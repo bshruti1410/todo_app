@@ -49,7 +49,6 @@ public class LoginController extends HttpServlet {
 			}
 		} catch (SQLException e) {
 			System.out.println("Error Occured in LoginController :: " + e);
-			
 		}
 	}
 }
