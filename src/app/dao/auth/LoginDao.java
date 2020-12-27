@@ -29,7 +29,8 @@ public class LoginDao {
 				
 				rs2 = st.executeQuery("SELECT u.user_id, p.full_name p_full_name,c.full_name c_full_name,u.role,u.email,u.phone " + 
 						"FROM user u left join parent p on u.user_id=p.user_id " + 
-						"left join child c on u.user_id=c.user_id where u.user_name = '" + user.getUserName() + "' and u.password = '" + user.getPassword() + "'");
+						"left join child c on u.user_id=c.user_id " +
+						"where u.user_name = '" + user.getUserName() + "' and u.password = '" + user.getPassword() + "'");
 				if(rs2.next()) {
 					pst = con.prepareStatement("UPDATE user set invalid_login_count=0 where user_name = '" + user.getUserName() + "'");
 					int updateCount = pst.executeUpdate();
@@ -53,7 +54,6 @@ public class LoginDao {
 						userDetailsVO.setInvalidLoginCount(invalidCount + 1);
 						userDetailsVO.setRole(role);
 					}
-						
 				}
 			} else {
 				userDetailsVO.setInvalidLoginCount(-1);

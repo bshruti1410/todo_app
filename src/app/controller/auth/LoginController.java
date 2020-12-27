@@ -23,8 +23,7 @@ public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Gson gson = new Gson();
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		PrintWriter out = response.getWriter();
 		
@@ -44,13 +43,9 @@ public class LoginController extends HttpServlet {
 				session.setAttribute("phone", userDetailsVO.getPhone());
 				session.setAttribute("email", userDetailsVO.getEmail());
 				session.setAttribute("role", userDetailsVO.getRole());
-				out.print(gson.toJson(userDetailsVO));
-	
+				out.print(new Gson().toJson(userDetailsVO));
 			} else {
-				request.setAttribute("InvalidLoginCount", userDetailsVO.getInvalidLoginCount());
-				request.setAttribute("error", "INVALID CREDENTIALS!");
-				request.setAttribute("Role", userDetailsVO.getRole());
-				out.print(gson.toJson(userDetailsVO));
+				out.print(new Gson().toJson(userDetailsVO));
 			}
 		} catch (SQLException e) {
 			System.out.println("Error Occured in LoginController :: " + e);

@@ -3,7 +3,7 @@ package app.vo;
 import java.util.Date;
 
 public class UserDetailsVO {
-	private int userId;
+	private Integer userId;
 	private String userName;
 	private String fullName;
 	private String phone;
@@ -11,19 +11,19 @@ public class UserDetailsVO {
 	private String role;
 	private String password;
 	private Integer invalidLoginCount;
-	private int childId;
+	private Integer childId;
 	private String username;
 	private String fullname;
 	private String address;
 	private String aadhar;
 	private Date dob;
-	private int parentId;
+	private Integer parentId;
 	
-	public int getChildId() {
+	public Integer getChildId() {
 		return childId;
 	}
 
-	public void setChildId(int childId) {
+	public void setChildId(Integer childId) {
 		this.childId = childId;
 	}
 
@@ -67,11 +67,11 @@ public class UserDetailsVO {
 		this.dob = dob;
 	}
 
-	public int getParentId() {
+	public Integer getParentId() {
 		return parentId;
 	}
 
-	public void setParentId(int parentId) {
+	public void setParentId(Integer parentId) {
 		this.parentId = parentId;
 	}
 
@@ -131,11 +131,11 @@ public class UserDetailsVO {
 		this.invalidLoginCount = invalidLoginCount;
 	}
 
-	public int getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 
