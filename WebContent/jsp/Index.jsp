@@ -6,10 +6,10 @@
 <title>Login Page</title>
 <%@ include file="NoCacheStore.jsp"%>
 <%@ include file="Resources.jsp"%>
-<script type="text/javascript" src="../js/validateUser.js"></script>
+<script type="text/javascript" src="<%= request.getContextPath() %>/js/validateUser.js"></script>
 </head>
 <body >
-	<div class="container " ng-app="todoApp" ng-controller="validateUserController">
+	<div class="container" ng-app="todoApp" ng-controller="validateUserController">
 		<div class="col-md-6">
 			<form name="validateUserForm">
 				<div class="form-group row">
@@ -30,6 +30,7 @@
 				</div>
 			</form>
 		</div>
+		<div>{{error}}</div>
 	</div>
 </body>
 </html>
