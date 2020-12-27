@@ -10,4 +10,5 @@ myApp.controller('validateUserController', function ($scope, $http) {
 			alert(hello);
 		});
 	}
+	
 });
