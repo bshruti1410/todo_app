@@ -8,8 +8,8 @@
 <%@ include file="Resources.jsp"%>
 <script type="text/javascript" src="<%= request.getContextPath() %>/js/validateUser.js"></script>
 </head>
-<body >
-	<div class="container" ng-app="todoApp" ng-controller="validateUserController">
+<body style="margin: 89px; ">
+	<div class="container" ng-app="todoApp" ng-controller="validateUserController" style="margin-left: 120px; padding-left: 200px;">
 		<div class="col-md-6">
 			<form name="validateUserForm">
 				<div class="form-group row">

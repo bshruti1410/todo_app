@@ -13,7 +13,7 @@
 		if (error != null)
 			out.print(error);
 	%>
-	<div class="container" ng-app="todoApp" ng-controller="ajaxController">
+	<div class="container" ng-app="todoApp" ng-controller="ajaxController" style="margin: 67px; margin-left: 209px; padding-left: 107px;">
 		<div class="col-md-6">
 			<form action="<%=request.getContextPath()%>/RegistrationController" method="post" name="registrationForm">
 				<div class="form-group row">

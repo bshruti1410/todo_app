@@ -15,6 +15,7 @@ public class LoginDao {
 	public UserDetailsVO validateCredentials(User user) throws SQLException {
 		Connection con = DBConnection.getConnection();
 		Statement st = null;
+		Statement st1 = null;
 		PreparedStatement pst = null;
 		ResultSet rs1 = null;
 		ResultSet rs2 = null;
@@ -30,8 +31,8 @@ public class LoginDao {
 				rs2 = st.executeQuery("SELECT u.user_id, p.full_name p_full_name,c.full_name c_full_name,u.role,u.email,u.phone " + 
 						"FROM user u left join parent p on u.user_id=p.user_id " + 
 						"left join child c on u.user_id=c.user_id " +
-						"where u.user_name = '" + user.getUserName() + "' and u.password = '" + user.getPassword() + "'");
-				if(rs2.next()) {
+						"where u.user_name = '" + user.getUserName() + "' and u.password = '" + user.getPassword() + "' and u.is_disabled = 0 ");
+				if (rs2.next()) {
 					pst = con.prepareStatement("UPDATE user set invalid_login_count=0 where user_name = '" + user.getUserName() + "'");
 					int updateCount = pst.executeUpdate();
 					if (updateCount > 0) {
@@ -54,6 +55,10 @@ public class LoginDao {
 						userDetailsVO.setInvalidLoginCount(invalidCount + 1);
 						userDetailsVO.setRole(role);
 					}
+					if (invalidCount == 3) {
+						st1 = con.createStatement();
+						st1.executeUpdate("UPDATE user set is_disabled=1 where user_name = '" + user.getUserName() + "'");
+					}
 				}
 			} else {
 				userDetailsVO.setInvalidLoginCount(-1);
@@ -65,6 +70,8 @@ public class LoginDao {
 			try {
 				if (st != null)
 					st.close();
+				if (st1 != null)
+					st1.close();
 				if (pst != null)
 					pst.close();
 				if (rs1 != null)
