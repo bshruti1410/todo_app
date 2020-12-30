@@ -4,29 +4,33 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import app.dao.dbconnection.DBConnection;
-import app.dao.model.ToDo;
+import app.vo.ToDoVO;
 
-public class ViewToDoDao {
+public class ViewToDoListDao {
 
-	public ToDo getToDoDetails(int todoId) throws SQLException {
-Connection con = DBConnection.getConnection();
+	public ArrayList<ToDoVO> viewToDoList(Integer userId) throws SQLException{
+
+		Connection con = DBConnection.getConnection();
 		
-		ToDo todo = new ToDo();
+		ArrayList<ToDoVO> viewToDoList = new ArrayList<ToDoVO>();
 		Statement st = null;
 		ResultSet rs = null;
 		try {
 			st = con.createStatement();
-			rs = st.executeQuery(" select todo_id,title, body, due_date from todo where todo_id= '" + todoId + "'");
+			rs = st.executeQuery(" select title, body, due_date, created_date from todo where user_id= '" + userId + "'");
 			while (rs.next()) {
-				todo.setTodoId(rs.getInt("todo_id"));
+				ToDoVO todo = new ToDoVO();
 				todo.setTitle(rs.getString("title"));
 				todo.setBody(rs.getString("body"));
 				todo.setDueDate(rs.getDate("due_date"));
+				todo.setCreatedDate(rs.getDate("created_date"));
+				viewToDoList.add(todo);
 			}
 		} catch (SQLException e) {
-			System.out.println("Error Occured in ViewToDoDao :: getToDoDetails :: " + e);
+			System.out.println("Error Occured in ViewToDoDao :: viewToDoList :: " + e);
 			throw e;
 		} finally {
 			try {
@@ -40,9 +44,8 @@ Connection con = DBConnection.getConnection();
 				System.out.println("Exception occured: " + e);
 			}
 		}
-		return todo;
+		return viewToDoList;
 	}
 
-	
 
 }

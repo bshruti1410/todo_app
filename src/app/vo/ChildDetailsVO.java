@@ -1,9 +1,12 @@
 package app.vo;
 
+import java.util.Date;
+
 public class ChildDetailsVO {
 	private int userId;
 	private String fullName;
 	private Integer toDoCount;
+	private Date latestDate;
 
 	public String getFullName() {
 		return fullName;
@@ -29,9 +32,18 @@ public class ChildDetailsVO {
 		this.toDoCount = toDoCount;
 	}
 
-	@Override
-	public String toString() {
-		return "ChildDetailsVO [user_id=" + userId + ", fullName=" + fullName + ", toDoCount=" + toDoCount + "]";
+	public Date getLatestDate() {
+		return latestDate;
 	}
 
+	public void setLatestDate(Date latestDate) {
+		this.latestDate = latestDate;
+	}
+
+	@Override
+	public String toString() {
+		return "ChildDetailsVO [userId=" + userId + ", fullName=" + fullName + ", toDoCount=" + toDoCount
+				+ ", latestDate=" + latestDate + "]";
+	}
+	
 }

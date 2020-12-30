@@ -11,7 +11,7 @@
 	<%@ include file="Resources.jsp"%>
 	<script type="text/javascript" src="../js/viewChildRecords.js" ></script>
 </head>
-<body>
+<body ng-app = "todoApp" ng-controller="ajaxController" >
 	<%
 		if (session.getAttribute("userName") == null) {
 			request.setAttribute("error", "Please Login to see the content!");
@@ -21,56 +21,48 @@
 			String name = (String)session.getAttribute("fullName");
 	%>
 	
-			Welcome <%= name %>.<br/>
+			Welcome <%= name %>.<br/><br/>
 			You can: <br/>
 	<%
 		 	String role = (String)session.getAttribute("role");
 			if(TodoConstants.Parent.equals(role)) {
 	%>
-				<div ng-app = "todoApp" ng-controller="ajaxController" >
-					<button ng-click="viewRecord()">View Your Children</button><br/>
-					<div ng-if="obj.recordFound">
-						<table id="table" style="width: 50%;" border= "2">
-							<tr>
-								<th>FullName</th>
-								<th>No. Of ToDoList</th>
-							</tr>
-							<tr ng-repeat="x in childDetails" >
-								<td>{{x.fullName}}</td>
-								<td>{{x.toDoCount}}</td>
-							</tr>
-						</table>
+				<div>
+					<input type="button" class="btn btn-success" value="View Your Children" ng-click="viewChildren()" 
+						style="margin: 10px 0px 10px 25px;"><br/>
+					<div ng-if="obj.recordFound == false">
+						
 					</div>
 					<br/>
-					<form action="CreateToDo.jsp" method="get">
-						<input type="submit" value="Create ToDo List"/>
-					</form>
+					<input type="button" class="btn btn-success" value="Create Todo" ng-click="createTodo()" 
+						style="margin:-22px 0px 9px 24px;padding-left: 36px;padding-right: 37px;"/>
 					<br/>
-					<form action="<%= request.getContextPath() %>/ViewToDoController" method="post">
-						<input type="submit" value="View ToDo List"/>
-					</form>
+					<input type="button" class="btn btn-success" value="View Todo" ng-click="viewTodo()" 
+						style="margin: 6px 0px 0px 24px;padding-left: 39px;padding-right: 46px;"/>
 					<br/>
 					<form action="<%= request.getContextPath() %>/LogoutController" method="post">
-						<input type="submit" value = "Logout" />
+						<input type="submit" class="btn btn-success" value = "Logout" 
+						style="margin: 14px 0px 0px 23px; padding-left: 49px; padding-right: 60px;
+						 "/>
 					</form>
 				</div>
 	<%
 			} else {
 	%>
-				<form action="CreateToDo.jsp" method="get">
-					<input type="submit" value="Create ToDo List"/>
-				</form>
+				<input type="button" class="btn btn-success" value="Create Todo" ng-click="createTodo()"
+					style="margin:-22px 0px 9px 24px;padding-left: 36px;padding-right: 37px;"/>
 				<br/>
-				<form action="<%= request.getContextPath() %>/ViewToDoController" method="post">
-					<input type="submit" value="View ToDo List"/>
-				</form>
+				<input type="button" class="btn btn-success" value="View Todo" ng-click="viewTodo()"
+					style="margin: 6px 0px 0px 24px;padding-left: 39px;padding-right: 46px;"/>
 				<br/>
 				<form action="<%= request.getContextPath() %>/LogoutController" method="post">
-					<input type="submit" value = "Logout" />
+					<input type="submit" class="btn btn-success" value = "Logout" 
+						style="margin: 14px 0px 0px 23px; padding-left: 49px; padding-right: 60px;"/>
 				</form>
 	<% 
 			}
 		}
 	%>
+	{{msg}}
 </body>
 </html>
