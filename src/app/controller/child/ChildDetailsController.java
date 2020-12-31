@@ -1,4 +1,4 @@
-package app.controller.auth;
+package app.controller.child;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
-import app.service.auth.ChildDetailsViewService;
+import app.service.child.ChildDetailsViewService;
 import app.vo.ChildDetailsVO;
 
 @WebServlet("/ChildDetailsController")

@@ -1,23 +1,23 @@
 package app.service.todo;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 
+import app.dao.model.ToDo;
 import app.dao.todo.ViewToDoDao;
-import app.vo.ToDoVO;
 
-public class ViewToDoService {
-	
-	public ArrayList<ToDoVO> viewToDoList(Integer UserId) throws SQLException {
-		ViewToDoDao dao = new ViewToDoDao();
-		ArrayList<ToDoVO> viewToDoList = null;
+public class ViewToDoService extends ViewToDoListService {
+
+	public ToDo getToDoDetails(int todoId) throws SQLException {
+		ToDo todo = null;
 		try {
-			viewToDoList = dao.viewToDoList(UserId);
-		} catch (SQLException e) {
-			System.out.println("Error Occured in ViewToDoService :: viewToDoList :: " + e);
+			ViewToDoDao dao = new ViewToDoDao();
+			todo = dao.getToDoDetails(todoId);
+			
+		} catch(SQLException e) {
+			System.out.print("Error occured in ViewToDoService :: getToDoDetails :: " + e);
 			throw e;
 		}
-		return viewToDoList;
+		 return todo;
 	}
-	
+
 }

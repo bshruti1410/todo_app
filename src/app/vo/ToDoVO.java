@@ -3,6 +3,8 @@ package app.vo;
 import java.util.Date;
 
 public class ToDoVO {
+	private Integer todoId;
+	private Integer userId;
 	private String title;
 	private String body;
 	private Date dueDate;
@@ -21,8 +23,8 @@ public class ToDoVO {
 
 	}
 
-	public ToDoVO(String title, String body, Date dueDate, Date createdDate) {
-
+	public ToDoVO(Integer todoId, String title, String body, Date dueDate, Date createdDate) {
+		this.todoId = todoId;
 		this.title = title;
 		this.body = body;
 		this.dueDate = dueDate;
@@ -61,10 +63,26 @@ public class ToDoVO {
 		this.createdDate = createdDate;
 	}
 
+	public Integer getTodoId() {
+		return todoId;
+	}
+
+	public void setTodoId(Integer todoId) {
+		this.todoId = todoId;
+	}
+
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
 	@Override
 	public String toString() {
-		return "ToDoVO [title=" + title + ", body=" + body + ", dueDate=" + dueDate + ", createdDate=" + createdDate
-				+ ", userAvailable=" + userAvailable + "]";
+		return "ToDoVO [todoId=" + todoId + ", userId=" + userId + ", title=" + title + ", body=" + body + ", dueDate="
+				+ dueDate + ", createdDate=" + createdDate + ", userAvailable=" + userAvailable + "]";
 	}
 
 }

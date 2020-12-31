@@ -1,9 +1,9 @@
-package app.service.auth;
+package app.service.child;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import app.service.dao.ChildDetailsDao;
+import app.dao.child.ChildDetailsDao;
 import app.vo.ChildDetailsVO;
 
 public class ChildDetailsViewService {

@@ -1,26 +1,23 @@
-var myApp = angular.module('todoApp', []);
+var myApp = angular.module('childApp', []);
 
-myApp.controller('ajaxController', function ($scope, $http) {
-	
-	$scope.obj = { recordFound: false };
+myApp.controller('childController', function ($scope, $http, $window) {
+
+	$scope.obj = { recordFound: false, msg: '' };
 	$scope.childDetails = [];
 
-	$scope.viewRecord = function() {
-		$http.get('/todo_app/ChildDetailsController').then(function(response) {
+	angular.element(document).ready(function () {
+		$http.get('/todo_app/ChildDetailsController').then(function (response) {
 			var res = response.data;
-			
-			if (res) {
+
+			if (res.length != 0) {
 				$scope.obj.recordFound = true;
 				$scope.childDetails = res;
+				$scope.obj.msg = '';
 			} else {
 				$scope.obj.recordFound = false;
+				$scope.obj.msg = 'No record found!';
 			}
 		});
-	}
-
-	$(document).ready(function() {
-		$("button").click(function() {
-			$('#table').toggle();
-		});
 	});
+	
 });
