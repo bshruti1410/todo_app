@@ -18,7 +18,7 @@ public class ChildDetailsDao {
 		ResultSet rs = null;
 		try {
 			st = con.createStatement();
-			rs = st.executeQuery("select c.user_id,c.full_name,count(t.todo_id) NumberOfToDoList, max(last_updated_date) latestDate from todo t " + 
+			rs = st.executeQuery("select c.user_id,c.full_name,count(t.todo_id) NumberOfToDoList, max(t.last_updated_date) latestDate from todo t " + 
 					"right join child c on t.user_id=c.user_id " + 
 					"join parent p on p.parent_id=c.parent_id " + 
 					"where p.user_id= '"+userId+"' " + 

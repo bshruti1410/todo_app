@@ -11,15 +11,15 @@ import app.dao.model.ToDo;
 public class ViewToDoDao {
 
 	public ToDo getToDoDetails(int todoId) throws SQLException {
-Connection con = DBConnection.getConnection();
-		
+		Connection con = DBConnection.getConnection();
+
 		ToDo todo = new ToDo();
 		Statement st = null;
 		ResultSet rs = null;
 		try {
 			st = con.createStatement();
 			rs = st.executeQuery(" select todo_id,title, body, due_date from todo where todo_id= '" + todoId + "'");
-			while (rs.next()) {
+			if (rs.next()) {
 				todo.setTodoId(rs.getInt("todo_id"));
 				todo.setTitle(rs.getString("title"));
 				todo.setBody(rs.getString("body"));
@@ -37,12 +37,9 @@ Connection con = DBConnection.getConnection();
 				if (con != null)
 					DBConnection.closeConnection();
 			} catch (SQLException e) {
-				System.out.println("Exception occured: " + e);
+				System.out.println("Exception occured :: " + e);
 			}
 		}
 		return todo;
 	}
-
-	
-
 }

@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class ToDoVO {
 	private Integer todoId;
+	private Integer userId;
 	private String title;
 	private String body;
 	private Date dueDate;
@@ -70,10 +71,18 @@ public class ToDoVO {
 		this.todoId = todoId;
 	}
 
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
 	@Override
 	public String toString() {
-		return "ToDoVO [todoId=" + todoId + ", title=" + title + ", body=" + body + ", dueDate=" + dueDate
-				+ ", createdDate=" + createdDate + ", userAvailable=" + userAvailable + "]";
+		return "ToDoVO [todoId=" + todoId + ", userId=" + userId + ", title=" + title + ", body=" + body + ", dueDate="
+				+ dueDate + ", createdDate=" + createdDate + ", userAvailable=" + userAvailable + "]";
 	}
-	
+
 }

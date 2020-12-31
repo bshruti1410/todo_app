@@ -12,25 +12,23 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import app.dao.model.ToDo;
-import app.service.todo.ViewToDoService;
+import app.service.todo.DeleteToDoService;
 
-@WebServlet("/ViewToDoController")
-public class ViewToDoController extends HttpServlet {
+@WebServlet("/DeleteToDoController")
+public class DeleteToDoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
-		
 		int todoId = Integer.parseInt(request.getParameter("todoId"));
-		ToDo todo = null;
+		DeleteToDoService service = new DeleteToDoService();
 		try {
-			ViewToDoService service = new ViewToDoService();
-			todo = service.getToDoDetails(todoId);
-			out.print(new Gson().toJson(todo));
+			int deleteCount = service.deleteTodo(todoId);
+			out.print(new Gson().toJson(deleteCount));
 		} catch(SQLException e) {
-			System.out.println("Error Occured in ViewToDoController :: doGet :: " + e);
+			System.out.print("Error occurred in DeleteToDoController :: doGet :: " + e);
 		}
+		 
 	}
 
 }

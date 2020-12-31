@@ -20,9 +20,10 @@ public class ViewToDoListDao {
 		ResultSet rs = null;
 		try {
 			st = con.createStatement();
-			rs = st.executeQuery(" select title, body, due_date, created_date from todo where user_id= '" + userId + "'");
+			rs = st.executeQuery(" select todo_id,title, body, due_date, created_date from todo where user_id= '" + userId + "'");
 			while (rs.next()) {
 				ToDoVO todo = new ToDoVO();
+				todo.setTodoId(rs.getInt("todo_id"));
 				todo.setTitle(rs.getString("title"));
 				todo.setBody(rs.getString("body"));
 				todo.setDueDate(rs.getDate("due_date"));

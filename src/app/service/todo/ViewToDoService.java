@@ -15,6 +15,7 @@ public class ViewToDoService extends ViewToDoListService {
 			
 		} catch(SQLException e) {
 			System.out.print("Error occured in ViewToDoService :: getToDoDetails :: " + e);
+			throw e;
 		}
 		 return todo;
 	}
