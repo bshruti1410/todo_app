@@ -48,7 +48,7 @@ public class LoginController extends HttpServlet {
 				out.print(new Gson().toJson(userDetailsVO));
 			}
 		} catch (SQLException e) {
-			System.out.println("Error Occured in LoginController :: " + e);
+			System.out.println("Error Occured in LoginController :: doPost :: " + e);
 		}
 	}
 }

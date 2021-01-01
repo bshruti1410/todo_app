@@ -44,7 +44,7 @@ public class RegistrationController extends HttpServlet {
 		userDetails.setEmail(email);
 		userDetails.setRole(role);
 		
-		SimpleDateFormat formatter = new SimpleDateFormat(TodoConstants.dd_MM_yyyy);
+		SimpleDateFormat formatter = new SimpleDateFormat(TodoConstants.MM_dd_yyyy);
 
 		RegistrationService registrationservice = new RegistrationService();
 		
@@ -73,7 +73,7 @@ public class RegistrationController extends HttpServlet {
 				rd.include(request, response);
 			}
 		} catch (SQLException | ParseException e) {
-			System.out.println("Error Occured in RegistrationDao :: " + e);
+			System.out.println("Error Occured in RegistrationController :: doPost :: " + e);
 		}
 	}
 

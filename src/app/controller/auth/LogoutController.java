@@ -17,7 +17,7 @@ public class LogoutController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		HttpSession session = request.getSession();
-		
+	
 		session.removeAttribute("userId");
 		session.removeAttribute("userName");
 		session.removeAttribute("fullName");

@@ -34,7 +34,7 @@ public class ChildDetailsController extends HttpServlet {
 			childDetails  = childDetailService.getChildDetails(userId);
 			out.print(gson.toJson(childDetails));
 		} catch (SQLException e) {
-			System.out.println("Error Occured in ChildDetailsController :: " + e);
+			System.out.println("Error Occured in ChildDetailsController :: doGet :: " + e);
 		}
 	}
 }

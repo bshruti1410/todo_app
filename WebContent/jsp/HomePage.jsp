@@ -18,7 +18,7 @@
 			rd.forward(request, response);
 		} else {
 			String name = (String) session.getAttribute("fullName");
-	%>
+	%>		
 			Welcome <%=name%>.<br/><br/>
 			You can: <br/>
 	<%
