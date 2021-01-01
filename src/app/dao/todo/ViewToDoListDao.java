@@ -31,7 +31,7 @@ public class ViewToDoListDao {
 				viewToDoList.add(todo);
 			}
 		} catch (SQLException e) {
-			System.out.println("Error Occured in ViewToDoDao :: viewToDoList :: " + e);
+			System.out.println("Error Occured in ViewToDoListDao :: viewToDoList :: " + e);
 			throw e;
 		} finally {
 			try {

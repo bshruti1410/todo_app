@@ -14,7 +14,7 @@ public class ViewToDoListService {
 		try {
 			viewToDoList = dao.viewToDoList(UserId);
 		} catch (SQLException e) {
-			System.out.println("Error Occured in ViewToDoService :: viewToDoList :: " + e);
+			System.out.println("Error Occured in ViewToDoListService :: viewToDoList :: " + e);
 			throw e;
 		}
 		return viewToDoList;
