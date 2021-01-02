@@ -27,9 +27,9 @@ myApp.controller('todoController', function ($scope, $http, $window) {
 		$scope.obj.todoId = todoId;
 		$scope.obj.dueDate = $scope.obj.dueDate.toLocaleDateString();
 		if (todoId != -1)
-			$scope.operation = 'Update';
+			$scope.operation = 'Updated';
 		else
-			$scope.operation = 'Create';
+			$scope.operation = 'Created';
 		
 		$http.post('/todo_app/CreateUpdateToDoController', JSON.stringify($scope.obj)).then(function(response) {
 			$scope.obj.title = '';

@@ -24,15 +24,13 @@ public class ChildDetailsDao {
 					"where p.user_id= '"+userId+"' " + 
 					"group by c.user_id");
 			
-			if (rs.next()) {
-				do {
-					ChildDetailsVO childDetails = new ChildDetailsVO();
-					childDetails.setUserId(rs.getInt("user_id"));
-					childDetails.setFullName(rs.getString("full_name"));
-					childDetails.setToDoCount(rs.getInt("NumberOfToDoList"));
-					childDetails.setLatestDate(rs.getDate("latestDate"));
-					childToDoList.add(childDetails);
-				} while(rs.next());	
+			while (rs.next()) {
+				ChildDetailsVO childDetails = new ChildDetailsVO();
+				childDetails.setUserId(rs.getInt("user_id"));
+				childDetails.setFullName(rs.getString("full_name"));
+				childDetails.setToDoCount(rs.getInt("NumberOfToDoList"));
+				childDetails.setLatestDate(rs.getDate("latestDate"));
+				childToDoList.add(childDetails);
 			}
 		} catch (SQLException e) {
 			System.out.println("Error Occured in ChildDetailsDao :: getChildDetails :: " + e);

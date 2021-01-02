@@ -1,6 +1,7 @@
 package app.vo;
 
 import java.util.Date;
+import java.util.List;
 
 public class UserDetailsVO {
 	private Integer userId;
@@ -18,7 +19,26 @@ public class UserDetailsVO {
 	private String aadhar;
 	private Date dob;
 	private Integer parentId;
+	private List<ToDoVO> todoList;
+	private Boolean userAvailable;
 	
+	
+	public Boolean getUserAvailable() {
+		return userAvailable;
+	}
+
+	public void setUserAvailable(Boolean userAvailable) {
+		this.userAvailable = userAvailable;
+	}
+
+	public List<ToDoVO> getTodoList() {
+		return todoList;
+	}
+
+	public void setTodoList(List<ToDoVO> todoList) {
+		this.todoList = todoList;
+	}
+
 	public Integer getChildId() {
 		return childId;
 	}
@@ -137,6 +157,15 @@ public class UserDetailsVO {
 
 	public void setUserId(Integer userId) {
 		this.userId = userId;
+	}
+
+	@Override
+	public String toString() {
+		return "UserDetailsVO [userId=" + userId + ", userName=" + userName + ", fullName=" + fullName + ", phone="
+				+ phone + ", email=" + email + ", role=" + role + ", password=" + password + ", invalidLoginCount="
+				+ invalidLoginCount + ", childId=" + childId + ", username=" + username + ", fullname=" + fullname
+				+ ", address=" + address + ", aadhar=" + aadhar + ", dob=" + dob + ", parentId=" + parentId
+				+ ", todoList=" + todoList + ", userAvailable=" + userAvailable + "]";
 	}
 
 }

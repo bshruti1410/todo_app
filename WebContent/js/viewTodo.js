@@ -1,6 +1,6 @@
 var myApp = angular.module('viewTodoApp', []);
 
-myApp.controller('viewTodoController', function($scope, $http, $window) {
+myApp.controller('viewTodoController', function($scope, $http) {
 
 	$scope.obj = {recordFound: false, msg: ''};
 	$scope.todoList = [];
@@ -24,7 +24,7 @@ myApp.controller('viewTodoController', function($scope, $http, $window) {
 			var res = response.data;
 			if(res>0) {
 				alert('Deleted Successfully');
-				$scope.todoList.pop(index);
+				$scope.todoList.splice(index, 1);
 			}
 		});
 	} 
