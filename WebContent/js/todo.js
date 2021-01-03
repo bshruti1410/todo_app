@@ -1,6 +1,6 @@
 var myApp = angular.module('todoApp', []);
 
-myApp.controller('todoController', function ($scope, $http, $window) {
+myApp.controller('todoController', function ($scope, $http) {
 
 	$scope.obj = {title: '', body: '', dueDate: '', todoId: ''};
 	$scope.operation = '';

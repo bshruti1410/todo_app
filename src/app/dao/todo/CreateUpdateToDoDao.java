@@ -14,7 +14,6 @@ public class CreateUpdateToDoDao {
 	public Integer updateTodo(ToDo todo) throws SQLException {
 		Connection con = DBConnection.getConnection();
 		PreparedStatement pst = null;
-		ResultSet rs = null;
 		Integer todoId = null;
 		int count = 0;
 		try {
@@ -31,8 +30,6 @@ public class CreateUpdateToDoDao {
 			throw e;
 		} finally {
 			try {
-				if (rs != null)
-					rs.close();
 				if (pst != null)
 					pst.close();
 				if (con != null)

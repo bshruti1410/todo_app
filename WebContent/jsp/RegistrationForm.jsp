@@ -3,9 +3,10 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Registration Form</title>
-<%@ include file="NoCacheStore.jsp"%>
-<%@ include file="Resources.jsp"%>
-<script type="text/javascript" src="../js/checkParentUserName.js"></script>
+	<%@ include file="../resources/NoCacheStore.jsp"%>
+	<%@ include file="../resources/js/jslibraries.jsp"%>
+	<%@ include file="../resources/css/csslibraries.jsp"%>
+	<script type="text/javascript" src="../js/checkParentUserName.js"></script>
 </head>
 <body>
 	<%

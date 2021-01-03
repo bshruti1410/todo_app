@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Create ToDo List</title>
-<%@ include file="NoCacheStore.jsp"%>
-<%@ include file="Resources.jsp"%>
-<script type="text/javascript" src="../js/todo.js" ></script>
+	<meta charset="ISO-8859-1">
+	<title>Create ToDo List</title>
+	<%@ include file="../resources/NoCacheStore.jsp"%>
+	<%@ include file="../resources/js/jslibraries.jsp"%>
+	<%@ include file="../resources/css/csslibraries.jsp"%>
+	<script type="text/javascript" src="../js/todo.js" ></script>
+	<%@ include file="NavigationBar.jsp" %>
 </head>
 <body ng-app="todoApp" ng-controller="todoController">
 	<%
@@ -18,7 +20,6 @@
 	%>
 			<div class="container" style="margin: 29px 0px 0px 78px;">
 				<div class="col-md-6">
-					<span ng-bind="msg"></span>
 					<form name="todoForm">
 						<input type="hidden" name="todoId" id="todoId" value="<%= todoId != null ? todoId : -1 %>"/>
 						<div class="form-group row">
@@ -39,7 +40,7 @@
 					</form>
 				</div>
 			</div>
-
+			<span ng-bind="msg" ng-style="{'color': 'red', 'font-size':'20px'}"></span>
 	<%
 		}
 	%>
