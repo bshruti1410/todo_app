@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -48,7 +47,7 @@ public class LoginController extends HttpServlet {
 				out.print(new Gson().toJson(userDetailsVO));
 			}
 		} catch (SQLException e) {
-			System.out.println("Error Occured in LoginController :: " + e);
+			System.out.println("Error Occured in LoginController :: doPost :: " + e);
 		}
 	}
 }

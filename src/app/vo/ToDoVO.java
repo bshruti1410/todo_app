@@ -9,6 +9,7 @@ public class ToDoVO {
 	private String body;
 	private Date dueDate;
 	private Date createdDate;
+	private Date lastUpdatedDate;
 	private boolean userAvailable;
 
 	public boolean isUserAvailable() {
@@ -79,10 +80,18 @@ public class ToDoVO {
 		this.userId = userId;
 	}
 
+	public Date getLastUpdatedDate() {
+		return lastUpdatedDate;
+	}
+
+	public void setLastUpdatedDate(Date lastUpdatedDate) {
+		this.lastUpdatedDate = lastUpdatedDate;
+	}
+
 	@Override
 	public String toString() {
 		return "ToDoVO [todoId=" + todoId + ", userId=" + userId + ", title=" + title + ", body=" + body + ", dueDate="
-				+ dueDate + ", createdDate=" + createdDate + ", userAvailable=" + userAvailable + "]";
+				+ dueDate + ", createdDate=" + createdDate + ", lastUpdatedDate=" + lastUpdatedDate + ", userAvailable="
+				+ userAvailable + "]";
 	}
-
 }

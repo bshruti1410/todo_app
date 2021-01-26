@@ -1,17 +1,23 @@
 package app.controller.auth;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import app.service.auth.RegistrationService;
 import app.util.TodoConstants;
@@ -23,57 +29,45 @@ public class RegistrationController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-
-		String username = request.getParameter("userName");
-		String password = request.getParameter("password");
-		String fullname = request.getParameter("fullName");
-		String address = request.getParameter("address");
-		String phone = request.getParameter("phone");
-		String email = request.getParameter("email");
-		String aadhar = request.getParameter("aadhar");
-		String dob = request.getParameter("dob");
-		String role = request.getParameter("role");
-		String pUserName = request.getParameter("pUserName");
+		BufferedReader br = request.getReader();
+		String userData = br.readLine();
+		JsonElement jsonElement = new JsonParser().parse(userData);
+		JsonObject job = jsonElement.getAsJsonObject();
 		
-		UserDetailsVO userDetails = new UserDetailsVO();
-		userDetails.setUserName(username);
-		userDetails.setPassword(password);
-		userDetails.setPhone(phone);
-		userDetails.setEmail(email);
-		userDetails.setRole(role);
-		
-		SimpleDateFormat formatter = new SimpleDateFormat(TodoConstants.dd_MM_yyyy);
-
 		RegistrationService registrationservice = new RegistrationService();
 		
 		try {
+			UserDetailsVO userDetails = new UserDetailsVO();
+			userDetails.setUserName(job.get("userName").getAsString());
+			userDetails.setPassword(job.get("password").getAsString());
+			userDetails.setPhone(job.get("phone").getAsString());
+			userDetails.setEmail(job.get("email").getAsString());
+			userDetails.setRole(job.get("role").getAsString());
 			Integer userId = registrationservice.insertUserDetails(userDetails);
 			
-			if (userId != null) {
-				userDetails.setFullname(fullname);
-				userDetails.setAddress(address);
-				userDetails.setDob(formatter.parse(dob));
-				if (TodoConstants.Parent.equals(role)) {
-					userDetails.setAadhar(aadhar);
+			userDetails.setFullName(job.get("fullName").getAsString());
+			userDetails.setAddress(job.get("address").getAsString());
+			Date dob = new SimpleDateFormat(TodoConstants.MM_dd_yyyy).parse(job.get("dob").getAsString());
+			userDetails.setDob(dob);
+			if(userId != null) {
+				if (TodoConstants.Parent.equals(job.get("role").getAsString())) {
+					userDetails.setAadhar(job.get("aadhar").getAsString());
 					userDetails.setUserId(userId);
 					Integer parentId = registrationservice.insertParentDetails(userDetails);
 				} else {
-					Integer parentId = registrationservice.getParentId(pUserName);
+					Integer parentId = registrationservice.getParentId(job.get("pUserName").getAsString());
+					userDetails.setAadhar(job.get("aadhar").getAsString());
 					userDetails.setUserId(userId);
 					userDetails.setParentId(parentId);
 					Integer childId = registrationservice.insertChildDetails(userDetails);
 				}
-				out.print(userDetails.getFullname() + ", you have registered successfully.");
-				out.println("<br/>Please Login here <a href=\"jsp/Index.jsp\">Login</a> ");
+				out.print(new Gson().toJson(userId));
 			} else {
-				request.setAttribute("error", "Error Occured");
-				RequestDispatcher rd = request.getRequestDispatcher("jsp/RegistrationForm.jsp");
-				rd.include(request, response);
+				out.print(new Gson().toJson(userId));
 			}
 		} catch (SQLException | ParseException e) {
-			System.out.println("Error Occured in RegistrationDao :: " + e);
+			System.out.println("Error Occured in RegistrationController :: doPost :: " + e);
 		}
 	}
 

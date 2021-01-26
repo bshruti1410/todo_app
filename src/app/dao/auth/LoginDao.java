@@ -23,10 +23,11 @@ public class LoginDao {
 		UserDetailsVO userDetailsVO = new UserDetailsVO();
 		try {
 			st = con.createStatement();
-			rs1 = st.executeQuery("SELECT role, invalid_login_count from user where user_name = '" + user.getUserName() + "'");
+			rs1 = st.executeQuery("SELECT role, invalid_login_count, max_invalid_login from user where user_name = '" + user.getUserName() + "'");
 			if (rs1.next()) {
 				int invalidCount = rs1.getInt("invalid_login_count");
 				String role = rs1.getString("role");
+				int maxInvalidCount = rs1.getInt("max_invalid_login");
 				
 				rs2 = st.executeQuery("SELECT u.user_id, p.full_name p_full_name,c.full_name c_full_name,u.role,u.email,u.phone " + 
 						"FROM user u left join parent p on u.user_id=p.user_id " + 
@@ -52,10 +53,10 @@ public class LoginDao {
 					pst = con.prepareStatement("UPDATE user set invalid_login_count=invalid_login_count+1 where user_name = '" + user.getUserName() + "'");
 					int updateCount = pst.executeUpdate();
 					if (updateCount > 0) {
-						userDetailsVO.setInvalidLoginCount(invalidCount + 1);
+						userDetailsVO.setInvalidLoginCount(++invalidCount);
 						userDetailsVO.setRole(role);
 					}
-					if (invalidCount == 3) {
+					if (invalidCount == maxInvalidCount) {
 						st1 = con.createStatement();
 						st1.executeUpdate("UPDATE user set is_disabled=1 where user_name = '" + user.getUserName() + "'");
 					}

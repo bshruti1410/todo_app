@@ -19,7 +19,7 @@ public class CheckParentUserNameDao {
 		ResultSet rs = null;
 		int validateParentUserName = 0;
 		try {
-			pst = con.prepareStatement("SELECT * FROM user where user_name = '"+ parentUserName+"'");
+			pst = con.prepareStatement("SELECT * FROM user where user_name = '"+ parentUserName +"' and role = 'parent'");
 			
 			rs = pst.executeQuery();
 			if(rs.next()) {
@@ -45,7 +45,5 @@ public class CheckParentUserNameDao {
 			}
 		}
 		return validateParentUserName;
-		
 	}
-
 }

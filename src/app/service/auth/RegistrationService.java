@@ -10,9 +10,9 @@ public class RegistrationService {
 	Integer userID = null;
 	Integer parentId = null;
 	Integer childId = null;
-
+	RegistrationDao dao = new RegistrationDao();
 	public Integer insertUserDetails(UserDetailsVO user) throws SQLException {
-		RegistrationDao dao = new RegistrationDao();
+		
 		try {
 			userID = dao.insertUserDetails(user);
 		} catch (SQLException e) {
@@ -23,7 +23,6 @@ public class RegistrationService {
 	}
 
 	public Integer insertParentDetails(UserDetailsVO parent) throws SQLException {
-		RegistrationDao dao = new RegistrationDao();
 		try {
 			parentId = dao.insertParentDetails(parent);
 		} catch (SQLException e) {
@@ -37,7 +36,6 @@ public class RegistrationService {
 	
 	
 	public Integer insertChildDetails(UserDetailsVO child) throws SQLException {
-		RegistrationDao dao = new RegistrationDao();
 		try {
 			childId = dao.insertChildDetails(child);
 		} catch (SQLException e) {
@@ -49,7 +47,6 @@ public class RegistrationService {
 	}
 
 	public Integer getParentId(String pUserName) throws SQLException {
-		RegistrationDao dao = new RegistrationDao();
 		try {
 			parentId = dao.getParentId(pUserName);
 		} catch (SQLException e) {

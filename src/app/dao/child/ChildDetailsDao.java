@@ -18,24 +18,24 @@ public class ChildDetailsDao {
 		ResultSet rs = null;
 		try {
 			st = con.createStatement();
-			rs = st.executeQuery("select c.user_id,c.full_name,count(t.todo_id) NumberOfToDoList, max(t.last_updated_date) latestDate from todo t " + 
-					"right join child c on t.user_id=c.user_id " + 
-					"join parent p on p.parent_id=c.parent_id " + 
+			rs = st.executeQuery("select u.is_disabled, c.user_id,c.full_name,count(t.todo_id) NumberOfToDoList, max(t.last_updated_date) latestDate from todo t  " + 
+					"right join child c on t.user_id=c.user_id  " + 
+					"join parent p on p.parent_id=c.parent_id  " + 
+					"join user u on u.user_id=c.user_id " + 
 					"where p.user_id= '"+userId+"' " + 
 					"group by c.user_id");
 			
-			if (rs.next()) {
-				do {
-					ChildDetailsVO childDetails = new ChildDetailsVO();
-					childDetails.setUserId(rs.getInt("user_id"));
-					childDetails.setFullName(rs.getString("full_name"));
-					childDetails.setToDoCount(rs.getInt("NumberOfToDoList"));
-					childDetails.setLatestDate(rs.getDate("latestDate"));
-					childToDoList.add(childDetails);
-				} while(rs.next());	
+			while (rs.next()) { 
+				ChildDetailsVO childDetails = new ChildDetailsVO();
+				childDetails.setIsDisabled(rs.getInt("is_disabled"));
+				childDetails.setUserId(rs.getInt("user_id"));
+				childDetails.setFullName(rs.getString("full_name"));
+				childDetails.setToDoCount(rs.getInt("NumberOfToDoList"));
+				childDetails.setLatestDate(rs.getDate("latestDate"));
+				childToDoList.add(childDetails);
 			}
 		} catch (SQLException e) {
-			System.out.println("Error Occured in ChildDetailsDao :: getChildDetails :: " + e);
+			System.out.println("Error occured in ChildDetailsDao :: getChildDetails :: " + e);
 			throw e;
 		} finally {
 			try {

@@ -7,8 +7,10 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<title>Home page</title>
-	<%@ include file="NoCacheStore.jsp" %>
-	<%@ include file="Resources.jsp"%>
+	<%@ include file="../resources/NoCacheStore.jsp"%>
+	<%@ include file="../resources/js/jslibraries.jsp"%>
+	<%@ include file="../resources/css/csslibraries.jsp"%>
+	<%@ include file="NavigationBar.jsp" %>
 </head>
 <body>
 	<%
@@ -17,29 +19,13 @@
 			RequestDispatcher rd = request.getRequestDispatcher("Index.jsp");
 			rd.forward(request, response);
 		} else {
-			String name = (String) session.getAttribute("fullName");
+			String fullName = (String) session.getAttribute("fullName");
 	%>
-			Welcome <%=name%>.<br/><br/>
-			You can: <br/>
+			<div style="font-size: 24px; font-weight: bold; font-style: italic; margin: 150px 0px 0px 582px; color: #d122a5;">
+				Welcome <%=fullName%>
+			</div>
 	<%
-			String role = (String) session.getAttribute("role");
-			if (TodoConstants.Parent.equals(role)) {
-	%>	
-				<div>
-					<a class="btn btn-success" style="margin: 13px 0px 10px 43px;" href="/todo_app/jsp/ChildRecord.jsp">View Your Children</a>
-				</div>
-	<%		} %>
-				<a class="btn btn-success" style="margin:8px 0px 9px 43px;padding-left: 36px;padding-right: 37px;" 
-					href="/todo_app/jsp/CreateUpdateToDo.jsp">Create Todo</a>
-				<br/>
-				<a class="btn btn-success" style="margin: 6px 0px 0px 43px;padding-left: 39px;padding-right: 46px;"
-					href="/todo_app/jsp/ViewToDo.jsp">View Todo</a>
-				<br/>
-				<form action="<%=request.getContextPath()%>/LogoutController" method="post">
-					<input type="submit" class="btn btn-success" value = "Logout" 
-						style="margin: 14px 0px 0px 43px; padding-left: 49px; padding-right: 60px;"/>
-				</form>
-			
-	<%	} %>
+		}
+	%>
 </body>
 </html>

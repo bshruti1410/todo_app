@@ -25,7 +25,7 @@ public class CheckUserNameController extends HttpServlet {
 			Integer validateParentUserName = service.getParentUserName(parentUserName);
 			out.print(validateParentUserName);
 		} catch (SQLException e) {
-			System.out.println("Error Occured in CheckUserNameController :: " + e);
+			System.out.println("Error Occured in CheckUserNameController :: doGet :: " + e);
 			
 		}
 	}

@@ -24,9 +24,14 @@ public class RegistrationDao {
 			pst.setString(4, user.getEmail());
 			pst.setString(5, user.getRole());
 			int count = pst.executeUpdate();
-			rs = pst.getGeneratedKeys();
-			if(rs.next())
-				userId = rs.getInt(1);
+			
+			if(count>0) {
+				rs = pst.getGeneratedKeys();
+				if(rs.next())
+					userId = rs.getInt(1);
+			} else 
+				userId = -1;
+				
 		} catch (SQLException e) {
 			System.out.println("Error Occured in RegistrationDao :: insertUserDetails :: " + e);
 			throw e;
@@ -54,15 +59,20 @@ public class RegistrationDao {
 		try {
 			pst = con.prepareStatement("insert into parent(full_name, address, aadhar, dob, user_id) " + " values(?,?,?,?,?)",
 					PreparedStatement.RETURN_GENERATED_KEYS);
-			pst.setString(1, parent.getFullname());
+			pst.setString(1, parent.getFullName());
 			pst.setString(2, parent.getAddress());
 			pst.setString(3, parent.getAadhar());
 			pst.setObject(4, new java.sql.Date(parent.getDob().getTime()));
 			pst.setInt(5, parent.getUserId());
 			int count = pst.executeUpdate();
-			rs = pst.getGeneratedKeys();
-			if(rs.next())
-				parentId = rs.getInt(1);
+			if(count>0) {
+				rs = pst.getGeneratedKeys();
+				if(rs.next())
+					parentId = rs.getInt(1);
+			} else {
+				parentId = -1;
+			}
+			
 
 		} catch (SQLException e) {
 			System.out.println("Error Occured in RegistrationDao :: insertParentDetails :: " + e);
@@ -89,17 +99,23 @@ public class RegistrationDao {
 		PreparedStatement pst = null;
 		ResultSet rs = null;
 		try {
-			pst = con.prepareStatement("insert into child(full_name, address, dob, user_id, parent_id) " + " values(?,?,?,?,?)",
+			pst = con.prepareStatement("insert into child(full_name, address, aadhar, dob, user_id, parent_id) " + " values(?,?,?,?,?,?)",
 					PreparedStatement.RETURN_GENERATED_KEYS);
-			pst.setString(1, child.getFullname());
+			pst.setString(1, child.getFullName());
 			pst.setString(2, child.getAddress());
-			pst.setDate(3, new java.sql.Date(child.getDob().getTime()));
-			pst.setInt(4, child.getUserId());
-			pst.setInt(5, child.getParentId());
+			pst.setString(3, child.getAadhar());
+			pst.setDate(4, new java.sql.Date(child.getDob().getTime()));
+			pst.setInt(5, child.getUserId());
+			pst.setInt(6, child.getParentId());
 			int count = pst.executeUpdate();
-			rs = pst.getGeneratedKeys();
-			if(rs.next())
-				child.setChildId(rs.getInt(1));
+			if(count>0) {
+				rs = pst.getGeneratedKeys();
+				if(rs.next())
+					child.setChildId(rs.getInt(1));
+			} else {
+				child.setChildId(-1);
+			}
+			
 			
 		} catch (SQLException e) {
 			System.out.println("Error Occured in RegistrationDao :: insertChildDetails :: " + e);
@@ -131,7 +147,9 @@ public class RegistrationDao {
 			rs = pst.executeQuery();
 			if(rs.next()) {
 				parentUserId = rs.getInt("parent_id");
-			} 
+			} else {
+				parentUserId = -1;
+			}
 		
 		} catch (SQLException e) {
 			System.out.println("Error Occured in RegistrationDao :: getParentId :: " + e);

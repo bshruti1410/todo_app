@@ -17,15 +17,19 @@ public class LogoutController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		HttpSession session = request.getSession();
-		
-		session.removeAttribute("userId");
-		session.removeAttribute("userName");
-		session.removeAttribute("fullName");
-		session.removeAttribute("phone");
-		session.removeAttribute("email");
-		session.removeAttribute("role");
-		out.println("<b>Thanks for visiting our site.<b/>");
-		out.println("<br/>Please Login here <a href=\"jsp/Index.jsp\">Login</a> ");
+	
+		try {
+			session.removeAttribute("userId");
+			session.removeAttribute("userName");
+			session.removeAttribute("fullName");
+			session.removeAttribute("phone");
+			session.removeAttribute("email");
+			session.removeAttribute("role");
+			out.print(1);
+		} catch (IllegalStateException e) {
+			System.out.println("Exception Occured: LogoutController :: doPost :: " + e);
+			out.print(0);
+		}
 	}
 
 }

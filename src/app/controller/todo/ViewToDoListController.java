@@ -33,7 +33,7 @@ public class ViewToDoListController extends HttpServlet {
 			ArrayList<ToDoVO> viewToDoList = viewToDoService.viewToDoList(userId);
 			out.print(new Gson().toJson(viewToDoList));
 		} catch (SQLException e) {
-			System.out.println("Error Occured in ViewToDoListController :: " + e);
+			System.out.println("Error Occured in ViewToDoListController :: doGet :: " + e);
 
 		}
 
