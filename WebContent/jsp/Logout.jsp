@@ -10,12 +10,17 @@
 	<%@ include file="../resources/css/csslibraries.jsp"%>
 	<script type="text/javascript" src="../js/logout.js"></script>
 </head>
-<body ng-app="logoutApp" ng-controller="logoutController" style="margin: 113px 0px 0px 466px; font-size: 22px; color: red;">
-	
-	<div ng-if="obj.logout">
-		<span ng-bind="obj.msg"></span>
-		Please login<a href="/todo_app/jsp/Index.jsp" style="color: red; font-style: italic; font-weight: bold;"> here</a>.
-	</div>
-	
+<body ng-app="logoutApp" ng-controller="logoutController" style="margin: 113px 0px 0px 466px; font-size: 22px; color: #ff03bf; font-weight: bold;">
+	<% if (session.getAttribute("userId") == null) {
+			request.setAttribute("error", "Please login to see the content!");
+			RequestDispatcher rd = request.getRequestDispatcher("Index.jsp");
+			rd.forward(request, response);
+		} else {
+	%>
+			<div ng-if="logout">
+				<span ng-bind="msg"></span>
+				Please login<a href="/todo_app/jsp/Index.jsp" style="color: #e305ab; font-style: italic; font-weight: bold;"> here</a>.
+			</div>
+	<%} %>
 </body>
 </html>

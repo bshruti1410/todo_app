@@ -18,10 +18,10 @@
 		} else {
 	%>
 			<div ng-app="viewTodoApp" ng-controller="viewTodoController">
-				<span style="color: #ff0000; font-size: 26px; margin: 9px;">{{obj.msg}}</span>
+				<div style="color: #f82929; font-size: 32px; font-weight: bold; margin: 195px 0px 0px 578px;">{{msg}}</div>
 				<br/>
-				<div ng-if="obj.recordFound">
-					<table class="table table-hover table-sm" style="width: 50%; margin: 1px 0px 20px 311px; text-align: center;" border="2">
+				<div ng-if="recordFound">
+					<table class="table table-hover table-sm" style="width: 50%; margin: -80px 0px 20px 325px; text-align: center;" border="2">
 						<thead>
 							<tr>
 								<th>Title</th>

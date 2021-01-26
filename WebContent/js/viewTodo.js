@@ -2,19 +2,20 @@ var myApp = angular.module('viewTodoApp', []);
 
 myApp.controller('viewTodoController', function($scope, $http) {
 
-	$scope.obj = {recordFound: false, msg: ''};
+	$scope.recordFound = false;
+	$scope.msg = '';
 	$scope.todoList = [];
 
 	angular.element(document).ready(function() {
 		$http.get('/todo_app/ViewToDoListController').then(function(response) {
 			var res = response.data;
 			if (res.length != 0) {
-				$scope.obj.recordFound = true;
+				$scope.recordFound = true;
 				$scope.todoList = res;
-				$scope.obj.msg = '';
+				$scope.msg = '';
 			} else {
-				$scope.obj.recordFound = false;
-				$scope.obj.msg = 'No record found!';
+				$scope.recordFound = false;
+				$scope.msg = 'No record found';
 			}
 		});
 	});

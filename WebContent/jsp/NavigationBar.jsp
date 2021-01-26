@@ -27,23 +27,23 @@
 	        Child
 	      </a>
 	      <div class="dropdown-menu">
-	        <a class="dropdown-item" href="#">Add Child</a>
+	        <a class="dropdown-item" href="/todo_app/jsp/ChildRegistration.jsp">Add Child</a>
 	        <hr>
 	        <a class="dropdown-item" href="/todo_app/jsp/ChildRecord.jsp">View Child</a>
 	      </div>
 	    </li>
 	<% } %>
-		<li class="nav-item" style="margin-left: 885px">
+		<li class="nav-item" style="padding-left: 876px;">
 		      <a class="nav-link" href="/todo_app/jsp/Logout.jsp"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
 		  </li>
-	    <li class="nav-item dropdown" style="margin-left: 20px">
+	    <li class="nav-item dropdown" style="margin-left: 32px">
 	      <a class="nav-link dropdown-toggle" id="account" data-toggle="dropdown" href="#">
 	        Profile
 	      </a>
 	      <div class="dropdown-menu dropdown-menu-right ">
 	        <a class="dropdown-item" href="/todo_app/jsp/ChangePassword.jsp">Change Password</a>
 	        <hr>
-	        <a class="dropdown-item" href="#">Account Details</a>
+	        <a class="dropdown-item" href="/todo_app/jsp/UpdateAccountDetails.jsp">Account Details</a>
 	      </div>
 	    </li>
 	  </ul>

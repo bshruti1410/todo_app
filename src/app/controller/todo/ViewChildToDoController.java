@@ -3,7 +3,6 @@ package app.controller.todo;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import app.service.todo.ViewChildToDoService;
-import app.vo.ToDoVO;
 import app.vo.UserDetailsVO;
 
 @WebServlet("/ViewChildToDoController")

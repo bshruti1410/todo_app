@@ -1,10 +1,8 @@
 package app.service.todo;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import app.dao.todo.ViewChildToDoDao;
-import app.vo.ToDoVO;
 import app.vo.UserDetailsVO;
 
 public class ViewChildToDoService {

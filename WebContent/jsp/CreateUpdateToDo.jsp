@@ -18,8 +18,8 @@
 		} else {
 			String todoId = request.getParameter("todoId");
 	%>
-			<div class="container" style="margin: 29px 0px 0px 78px;">
-				<div class="col-md-6">
+			<div class="container" style="margin: 34px 0px 0px 78px;">
+				<div class="col-md-6" style="margin: 34px 0px 0px 322px;">
 					<form name="todoForm">
 						<input type="hidden" name="todoId" id="todoId" value="<%= todoId != null ? todoId : -1 %>"/>
 						<div class="form-group row">
@@ -34,13 +34,13 @@
 							<label for="dueDate" class="col-md-4">Due Date</label>
 							<input type="date" class="form-control col-md-8" name="dueDate" ng-model="obj.dueDate" ng-init = "obj.dueDate | date : 'dd/MM/yyyy'" required/>
 						</div>
-						<div class="form-group row col-md-4" style="margin: 47px 0px 0px 173px;">
+						<div class="form-group row col-md-4" style="margin: 47px 0px 0px 228px;">
 							<input type="button" class="btn btn-success" value="Submit" ng-click="saveTodo()" ng-disabled="todoForm.$invalid"/>
 						</div>
 					</form>
 				</div>
 			</div>
-			<span ng-bind="msg" ng-style="{'color': 'red', 'font-size':'20px'}"></span>
+			<div ng-bind="msg" ng-style="{'color': isError=='0' ? '#22b622' : '#fe2424', 'font-size':'20px','font-weight':'bold','margin': '26px 0px 0px 615px'}"></div>
 	<%
 		}
 	%>

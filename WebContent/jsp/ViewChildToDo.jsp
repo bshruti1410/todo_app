@@ -21,8 +21,8 @@
 	%>
 	
 		<input type="hidden" name="userId" id="userId" value="<%= userId != null ? userId : -1%>">
-		<span style="color: #ff0000; font-size: 26px; margin: 9px;" ng-bind="obj.msg"></span>
-		<div ng-if="obj.recordFound">
+		<div style="color: #f82929; font-weight: bold; font-size: 32px; margin: 195px 0px 0px 596px;" ng-bind="msg"></div>
+		<div ng-if="recordFound">
 			<table class="table table-hover table-sm"
 					style="width: 50%; margin: 1px 0px 20px 311px; text-align: center;"
 					border="2">

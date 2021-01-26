@@ -21,7 +21,9 @@
 		} else {
 			String fullName = (String) session.getAttribute("fullName");
 	%>
-			<span style="font-size: 22px; color: red;">Welcome <%=fullName%>.</span>
+			<div style="font-size: 24px; font-weight: bold; font-style: italic; margin: 150px 0px 0px 582px; color: #d122a5;">
+				Welcome <%=fullName%>
+			</div>
 	<%
 		}
 	%>

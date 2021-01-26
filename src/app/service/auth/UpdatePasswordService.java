@@ -6,7 +6,7 @@ import app.dao.auth.UpdatePasswordDao;
 
 public class UpdatePasswordService {
 
-	public int updatePassword(Integer userId, String oldPassword, String newPassword) throws SQLException {
+	public Integer updatePassword(Integer userId, String oldPassword, String newPassword) throws SQLException {
 		UpdatePasswordDao dao = new UpdatePasswordDao();
 		int updateCount = 0;
 		try {

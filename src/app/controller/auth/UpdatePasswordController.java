@@ -27,7 +27,7 @@ public class UpdatePasswordController extends HttpServlet {
 		UpdatePasswordService service = new UpdatePasswordService();
 		
 		try {
-			int updateCount = service.updatePassword(userId, oldPassword, newPassword);
+			Integer updateCount = service.updatePassword(userId, oldPassword, newPassword);
 			out.print(updateCount);
 		} catch(SQLException e) {
 			System.out.print("Exception occurred in UpdatePasswordController :: doPost :: " + e);

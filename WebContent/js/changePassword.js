@@ -2,19 +2,23 @@ var myApp = angular.module('passwordApp', []);
 
 myApp.controller('passwordController', function($scope, $http) {
 	
-	$scope.obj = {oldPassword : '', newPassword : '', confirmPassword : '', msg : '', isError : ''};
+	$scope.oldPassword = '';
+	$scope.newPassword = '';
+	$scope.confirmPassword = '';
+	$scope.msg = '';
+	$scope.isError = '';
 
 	$scope.changePassword = function() {
-		$http.post('/todo_app/UpdatePasswordController?newPassword=' + $scope.obj.newPassword + '&oldPassword=' + $scope.obj.oldPassword).then(function(response) {
-			$scope.obj.oldPassword = ''
-			$scope.obj.newPassword = '';
-			$scope.obj.confirmPassword = '';
+		$http.post('/todo_app/UpdatePasswordController?newPassword=' + $scope.newPassword + '&oldPassword=' + $scope.oldPassword).then(function(response) {
+			$scope.oldPassword = ''
+			$scope.newPassword = '';
+			$scope.confirmPassword = '';
 			if(response.data > 0) {
-				$scope.obj.msg = 'Updated password successfully!';
-				$scope.obj.isError = 1;
+				$scope.msg = 'Updated password successfully!';
+				$scope.isError = 1;
 			} else {
-				$scope.obj.msg = 'Incorrect password, please try again!';
-				$scope.obj.isError = 0;
+				$scope.msg = 'Incorrect password, please try again!';
+				$scope.isError = 0;
 			}
 		});
 	}

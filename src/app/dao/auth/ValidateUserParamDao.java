@@ -5,31 +5,26 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
-
-
 import app.dao.dbconnection.DBConnection;
 
-public class CheckParentUserNameDao {
-
-	public int getParentUserName(String parentUserName) throws SQLException{
-		
+public class ValidateUserParamDao {
+	
+	public boolean validateUserParam(String param, String paramValue) throws SQLException{
 		Connection con = DBConnection.getConnection();
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		int validateParentUserName = 0;
+		boolean isAvailable = false;
 		try {
-			pst = con.prepareStatement("SELECT * FROM user where user_name = '"+ parentUserName +"' and role = 'parent'");
-			
+			pst = con.prepareStatement("select * from user where " + param + "='" + paramValue + "'");
 			rs = pst.executeQuery();
 			if(rs.next()) {
-				validateParentUserName = 1;
+				isAvailable = true;
 			} else {
-				validateParentUserName = 0;
+				isAvailable = false;
 			}
-
+			
 		} catch (SQLException e) {
-			System.out.println("Error Occured in CheckParentUserNameDao :: getParentUserName :: " + e);
+			System.out.println("Error occured in ValidateUserParamDao :: validateUserParam :: " + e);
 			throw e;
 		} finally {
 			try {
@@ -44,6 +39,7 @@ public class CheckParentUserNameDao {
 				throw e;
 			}
 		}
-		return validateParentUserName;
+		return isAvailable;
 	}
+	
 }

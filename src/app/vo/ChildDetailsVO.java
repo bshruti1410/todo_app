@@ -3,6 +3,7 @@ package app.vo;
 import java.util.Date;
 
 public class ChildDetailsVO {
+	private Integer isDisabled;
 	private int userId;
 	private String fullName;
 	private Integer toDoCount;
@@ -40,10 +41,18 @@ public class ChildDetailsVO {
 		this.latestDate = latestDate;
 	}
 
+	public Integer getIsDisabled() {
+		return isDisabled;
+	}
+
+	public void setIsDisabled(Integer isDisabled) {
+		this.isDisabled = isDisabled;
+	}
+
 	@Override
 	public String toString() {
-		return "ChildDetailsVO [userId=" + userId + ", fullName=" + fullName + ", toDoCount=" + toDoCount
-				+ ", latestDate=" + latestDate + "]";
+		return "ChildDetailsVO [isDisabled=" + isDisabled + ", userId=" + userId + ", fullName=" + fullName
+				+ ", toDoCount=" + toDoCount + ", latestDate=" + latestDate + "]";
 	}
-	
+
 }

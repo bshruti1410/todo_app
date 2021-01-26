@@ -5,7 +5,7 @@ myApp.controller('todoController', function ($scope, $http) {
 	$scope.obj = {title: '', body: '', dueDate: '', todoId: ''};
 	$scope.operation = '';
 	$scope.msg = '';
-
+	$scope.isError = '';
 	angular.element(document).ready(function() {
 		var todoId = document.getElementById('todoId').value;
 		if(todoId != -1) {
@@ -30,15 +30,17 @@ myApp.controller('todoController', function ($scope, $http) {
 			$scope.operation = 'Updated';
 		else
 			$scope.operation = 'Created';
-		
+
 		$http.post('/todo_app/CreateUpdateToDoController', JSON.stringify($scope.obj)).then(function(response) {
 			$scope.obj.title = '';
 			$scope.obj.body = '';
 			$scope.obj.dueDate = '';	
 			console.log(response.data);
 			if (response.data == -1) {
+				$scope.isError = 1;
 				$scope.msg = $scope.operation + " failed!";
 			} else {
+				$scope.isError = 0;
 				$scope.msg = $scope.operation + ' Successfully!';
 			}
 		});

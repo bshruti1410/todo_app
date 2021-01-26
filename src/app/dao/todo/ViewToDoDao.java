@@ -26,7 +26,7 @@ public class ViewToDoDao {
 				todo.setDueDate(rs.getDate("due_date"));
 			}
 		} catch (SQLException e) {
-			System.out.println("Error Occured in ViewToDoDao :: getToDoDetails :: " + e);
+			System.out.println("Error occured in ViewToDoDao :: getToDoDetails :: " + e);
 			throw e;
 		} finally {
 			try {

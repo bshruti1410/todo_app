@@ -9,7 +9,7 @@
 	<%@ include file="../resources/css/csslibraries.jsp"%>
 	<script type="text/javascript" src="<%= request.getContextPath() %>/js/validateUser.js"></script>
 </head>
-<body style="margin: 89px; ">
+<body style="margin: 174px 0px 0px 168px; ">
 	<% String error = (String)request.getAttribute("error");
 		if(error != null) {
 	%>
@@ -20,11 +20,11 @@
 				<form name="validateUserForm">
 					<div class="form-group row">
 						<label for="username" class="col-md-4">Username</label>
-						<input type="text" class="form-control col-md-8" name="username" ng-model="obj.userName" required />
+						<input type="text" class="form-control col-md-8" name="username" ng-model="userName" required />
 					</div>
 					<div class="form-group row">
 						<label for="password" class="col-md-4">Password</label>
-						<input type="password" class="form-control col-md-8" name="password" ng-model="obj.password" required />
+						<input type="password" class="form-control col-md-8" name="password" ng-model="password" required />
 					</div>
 					<div class="form-group row">
 						<div class="col-md-4 text-left">

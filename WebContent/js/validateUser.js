@@ -2,11 +2,12 @@ var myApp = angular.module('todoApp', []);
 
 myApp.controller('validateUserController', function ($scope, $http, $window) {
 	
-	$scope.obj = {userName:'', password: ''};
+	$scope.userName = '';
+	$scope.password = '';
 	$scope.error = '';
 	
 	$scope.validateUser = function() {
-		$http.post('/todo_app/LoginController?username=' + $scope.obj.userName + '&password=' + $scope.obj.password)
+		$http.post('/todo_app/LoginController?username=' + $scope.userName + '&password=' + $scope.password)
 				.then(function(response) {
 			var res = response.data;
 			var invLogCount = res.invalidLoginCount;

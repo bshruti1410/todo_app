@@ -41,7 +41,7 @@ public class ViewChildToDoDao {
 			}
 			
 		} catch (SQLException e) {
-			System.out.print("Exception occurred in ViewChildToDoDao :: getChildTodo :: " + e);
+			System.out.print("Error occurred in ViewChildToDoDao :: getChildTodo :: " + e);
 			throw e;
 		} finally {
 			try {
@@ -52,7 +52,7 @@ public class ViewChildToDoDao {
 				if (con != null)
 					DBConnection.closeConnection();
 			} catch (SQLException e) {
-				System.out.print("Error occurred in ViewChildToDoDao :: " + e);
+				System.out.print("Exception occurred in ViewChildToDoDao :: " + e);
 			}
 		}
 		return childTodo;

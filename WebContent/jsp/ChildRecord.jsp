@@ -19,11 +19,9 @@
 	} else {
 	%>
 		<div ng-app="childApp" ng-controller="childController">
-			<span style="color: #ff0000; font-size: 26px; margin: 9px;">{{obj.msg}}</span>
-			<br />
-			<div ng-if="obj.recordFound">
+			<div ng-if="recordFound">
 				<table class="table table-hover table-sm"
-					style="width: 50%; margin: 1px 0px 20px 311px; text-align: center;"
+					style="width: 50%; margin: 52px 0px 20px 319px; text-align: center;"
 					border="2">
 					<thead>
 						<tr>
@@ -31,6 +29,7 @@
 							<th>No. Of Todo</th>
 							<th>Last Updated date</th>
 							<th>Action</th>
+							<th>Access</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -38,13 +37,16 @@
 							<td><a href="ViewChildToDo.jsp?userId={{x.userId}}">{{x.fullName}}</a></td>
 							<td>{{x.toDoCount}}</td>
 							<td>{{x.latestDate}}</td>
+							<td><button class="btn btn-info">feedback</button></td>
 							<td>
-								<button class="btn btn-info">feedback</button>
+								<button class="btn btn-success" ng-disabled="x.isDisabled == 0" ng-click="access(0, x.userId)">Grant</button>
+								<button class="btn btn-danger" ng-disabled="x.isDisabled != 0" ng-click="access(1, x.userId)">Revoke</button>
 							</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
+			<div style="color: #f82929; font-size: 32px; font-weight: bold; margin: 195px 0px 0px 578px;">{{msg}}</div>
 		</div>
 	<%} %>
 </body>
